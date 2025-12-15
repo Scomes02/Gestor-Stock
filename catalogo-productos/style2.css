@@ -1,0 +1,235 @@
+/* =======================================
+    ESTILOS GLOBALES - Capibara Store (Versión Capibara Theme)
+========================================== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* --- PALETA DE COLORES CAPIBARA --- */
+:root {
+    /* Base y Estructura */
+    --color-primary: #1E3A8A;       /* Azul Oscuro Profundo (Para Navbar/Texto fuerte) */
+    --color-capibara-dark: #6B462C;  /* Marrón Oscuro Terroso (Capibara principal) */
+    --color-capibara-light: #B48A74; /* Marrón Suave / Beige (Acento y botones) */
+    --color-accent: #FFC300;        /* Dorado Suave (Para alertas/énfasis) */
+    --color-success: #38A169;       /* Verde Oliva Natural (Para éxito/stock) */
+    --color-background: #F8F9FA;    /* Fondo muy claro */
+    --color-footer: #2D3748;        /* Gris Oscuro Elegante */
+}
+ 
+/* --- 1. CONFIGURACIÓN BASE (STICKY FOOTER) --- */
+html {
+    height: 100%;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--color-background); 
+    color: #333;
+    margin: 0;
+    
+    /* Configuración Flexbox para pegar el footer */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Contenedor principal para empujar el footer */
+.main-content {
+    flex: 1; 
+    padding-top: 75px; 
+}
+
+/* --- 2. NAVBAR --- */
+.navbar {
+    background-color: var(--color-primary); 
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2); 
+    min-height: 70px;
+}
+.navbar-brand {
+    font-weight: 700;
+    color: #fff !important;
+    letter-spacing: 1px;
+    transition: transform 0.3s;
+}
+.navbar-brand:hover {
+    transform: scale(1.03);
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.8) !important; 
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s;
+}
+.nav-link:hover {
+    color: var(--color-accent) !important; /* Dorado en hover */
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+.navbar-nav .nav-item span.nav-link.small {
+    display: inline-block !important;
+    transform: translateY(0px); 
+}
+.btn-sm.btn-light {
+    border-radius: 50px;
+    font-weight: 500;
+}
+
+/* --- 3. CARDS --- */
+.card {
+    border: 1px solid #e0e0e0; 
+    border-radius: 12px; 
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08); 
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15); 
+}
+.card-title {
+    color: var(--color-capibara-dark); /* Título en marrón oscuro */
+    font-weight: 600;
+}
+
+/* --- 4. BOTONES (Bootstrap Override) --- */
+.btn {
+    border-radius: 50px; 
+    font-weight: 500;
+    padding: 8px 25px;
+    transition: all 0.2s;
+}
+.btn:hover {
+    transform: scale(1.03);
+}
+/* Azul oscuro/marrón para la acción principal */
+.btn-primary {
+    background-color: var(--color-capibara-dark);
+    border-color: var(--color-capibara-dark);
+}
+.btn-primary:hover {
+    background-color: var(--color-capibara-light);
+    border-color: var(--color-capibara-light);
+}
+
+/* Verde para el éxito/stock */
+.btn-success {
+    background-color: var(--color-success);
+    border-color: var(--color-success);
+}
+
+/* Naranja/Dorado para Info/Acento/Botón de Pedidos Admin */
+.btn-info, .btn-warning {
+    background-color: var(--color-accent) !important; 
+    border-color: var(--color-accent) !important;
+    color: var(--color-primary) !important;
+}
+.btn-info:hover, .btn-warning:hover {
+    background-color: var(--color-capibara-light) !important;
+    border-color: var(--color-capibara-light) !important;
+}
+
+/* Estilo para el botón de Análisis (contorno oscuro) */
+.btn-outline-secondary {
+    --bs-btn-color: var(--color-footer);
+    --bs-btn-border-color: var(--color-footer);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--color-footer);
+    --bs-btn-hover-border-color: var(--color-footer);
+}
+
+/* --- 5. TABLAS --- */
+.table {
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.table thead {
+    background-color: var(--color-primary); /* Encabezado en azul profundo */
+    color: #fff;
+    border-bottom: 2px solid #142a63;
+}
+.table-hover tbody tr:hover {
+    background-color: #f0f3f6;
+}
+
+/* Estilos de estado de pedidos para pedidos_admin.php */
+.estado-pendiente { 
+    background-color: #fff3cd; 
+    color: #856404; 
+    font-weight: bold; 
+}
+.estado-entregado { 
+    background-color: #d4edda; 
+    color: #155724; 
+}
+.estado-rechazado { 
+    background-color: #f8d7da; 
+    color: #721c24; 
+}
+
+
+/* --- 6. FORMULARIOS --- */
+input, select {
+    border-radius: 6px !important;
+    border: 1px solid #ccc !important;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+input:focus, select:focus {
+    border-color: var(--color-primary) !important;
+    box-shadow: 0 0 0 0.25rem rgba(30, 58, 138, 0.25) !important;
+}
+
+/* --- 7. FOOTER --- */
+footer {
+    background-color: var(--color-footer); 
+    color: #ddd;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: auto; 
+    font-size: 13px;
+    width: 100%;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+}
+footer a {
+    color: var(--color-accent); /* Dorado en el footer */
+}
+
+
+/* --- 8. TRANSICIONES Y ALERTAS --- */
+.fade-in {
+    animation: fadeIn 0.8s ease-out; 
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.alert {
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* --- 9. RESPONSIVE (Ajustes para móviles) --- */
+@media (max-width: 992px) {
+    .main-content {
+        padding-top: 60px; 
+    }
+    .navbar-collapse {
+        background-color: var(--color-primary);
+        margin-top: 5px;
+        padding: 10px 15px;
+        border-radius: 0 0 8px 8px;
+    }
+    .nav-item {
+        margin-bottom: 5px;
+    }
+    .btn { 
+        font-size: 0.9rem; 
+        padding: 8px 20px;
+        width: 100%;
+        margin-top: 5px;
+    }
+    .card-resumen {
+        margin-bottom: 10px;
+    }
+}

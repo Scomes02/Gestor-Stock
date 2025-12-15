@@ -1,0 +1,126 @@
+:root {
+    --azul: #0B173D;
+    --dorado: #B78F0D;
+    --fondo: #f8f9fa;
+    --blanco: #ffffff;
+}
+
+body { background-color: var(--fondo); font-family: 'Inter', sans-serif; }
+
+/* Header Estilo Capibara */
+.main-header {
+    background: var(--azul);
+    padding: 15px 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.logo-img { height: 50px; border-radius: 5px; }
+
+.nav-menu a {
+    color: var(--blanco);
+    text-decoration: none;
+    margin-right: 25px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+.nav-menu a:hover, .nav-menu a.active { color: var(--dorado); }
+
+/* Icono Carrito Flotante */
+.cart-wrapper { position: relative; display: inline-block; }
+.cart-icon-container { color: var(--dorado); font-size: 1.5rem; cursor: pointer; position: relative; }
+.cart-icon-container #contador-productos {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background: #dc3545;
+    color: white;
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 50%;
+}
+
+/* Dropdown de Carrito Mejorado */
+.cart-dropdown {
+    position: absolute;
+    top: 45px;
+    right: 0;
+    width: 320px;
+    background: var(--blanco);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    padding: 20px;
+}
+.hidden { display: none; }
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+.cart-item img { width: 50px; height: 50px; border-radius: 8px; object-fit: cover; }
+.btn-pay { background: var(--azul); color: var(--dorado); border: none; padding: 10px; border-radius: 8px; font-weight: bold; }
+
+/* Tarjetas de Producto con Zoom */
+.product-card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: 0.3s;
+    background: var(--blanco);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.product-card:hover { transform: translateY(-8px); box-shadow: 0 12px 24px rgba(0,0,0,0.1); }
+
+.img-zoom-container { overflow: hidden; height: 280px; }
+.img-zoom-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+.product-card:hover .img-zoom-container img { transform: scale(1.1); }
+
+.product-title { font-size: 1rem; font-weight: 600; color: #333; height: 2.4rem; overflow: hidden; }
+.product-price { color: var(--azul); font-weight: 800; font-size: 1.2rem; }
+.btn-add-cart { background: #f8f9fa; border: 1px solid var(--azul); color: var(--azul); padding: 8px; border-radius: 8px; transition: 0.3s; }
+.btn-add-cart:hover { background: var(--azul); color: var(--dorado); }
+
+/* Estilos adicionales para el Modal de Pago */
+.bg-azul { background-color: var(--azul) !important; }
+.text-azul { color: var(--azul) !important; }
+.btn-azul { background-color: var(--azul); color: var(--dorado); border: none; font-weight: bold; }
+.btn-azul:hover { background-color: #1a2a5a; color: var(--dorado); }
+
+.btn-pay-option {
+    border: 2px solid var(--azul);
+    color: var(--azul);
+    font-weight: 600;
+    padding: 15px;
+    transition: 0.3s;
+}
+
+.btn-pay-option:hover {
+    background-color: var(--azul);
+    color: var(--dorado);
+    transform: scale(1.02);
+}
+/* Estilo para los títulos de las categorías */
+/* Localiza o agrega esto en tu styleTienda.css */
+.container-header h2, 
+.container-header h1 {
+    /* Una fuente con excelente soporte de acentos */
+    font-family: 'Inter', -apple-system, sans-serif; 
+    
+    /* Fuerza: Primera Mayúscula, resto minúsculas */
+    text-transform: capitalize; 
+    
+    /* Evita que los acentos "empujen" el texto hacia abajo */
+    line-height: 1.2;
+    vertical-align: middle;
+    
+    /* Estética Capibara */
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #0B173D; /* Tu azul institucional */
+    letter-spacing: -0.5px; /* Hace que se vea más compacto y profesional */
+}
