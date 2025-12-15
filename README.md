@@ -41,4 +41,37 @@ Sigue estos pasos para correr el proyecto en tu máquina local (necesitas XAMPP,
 
 1. **Clonar el repositorio:**
    ```bash
-   git clone [https://github.com/tu-usuario/ReStock.git](https://github.com/tu-usuario/ReStock.git)
+   git clone [https://github.com/Scomes02/ReStock.git](https://github.com/Scomes02/ReStock.git)
+   
+2. **Configurar la Base de Datos:**
+
+- Abre phpMyAdmin (o tu gestor SQL preferido).
+
+- Crea una nueva base de datos (ej: restock_db).
+
+- Importa el archivo catalogo_db.sql que se encuentra en la carpeta raíz de este proyecto.
+
+3. **Ejecutar:**
+
+- Mueve la carpeta del proyecto a tu directorio de servidor local (ej: htdocs en XAMPP).
+
+- Abre tu navegador y navega a http://localhost/ReStock.
+
+---
+
+## 📸 **Capturas de Pantalla**
+
+<img width="1852" height="940" alt="image" src="https://github.com/user-attachments/assets/75a9dc8b-ac9c-433b-bfc4-e362b17ad9ab" />
+
+<img width="1842" height="932" alt="image" src="https://github.com/user-attachments/assets/4c73f3cf-26df-427d-977f-b3a47cf1bc5a" />
+
+<img width="1865" height="939" alt="image" src="https://github.com/user-attachments/assets/881734bd-4613-420c-b256-c86fdbcc9cfd" />
+
+<img width="1847" height="939" alt="image" src="https://github.com/user-attachments/assets/41aa3788-d4e3-4518-bb97-68829393ab8c" />
+
+## ✒️ **Autor**
+Santiago Comes
+
+LinkedIn
+
+GitHub
