@@ -41,7 +41,7 @@ Sigue estos pasos para correr el proyecto en tu máquina local (necesitas XAMPP,
 
 1. **Clonar el repositorio:**
    ```bash
-   git clone [https://github.com/Scomes02/ReStock.git](https://github.com/Scomes02/ReStock.git)
+   git clone [https://github.com/Scomes02/Gestor-Stock.git](https://github.com/Scomes02/Gestor-Stock.git)
    
 2. **Configurar la Base de Datos:**
 
