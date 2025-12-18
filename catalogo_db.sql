@@ -38,7 +38,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (1,'Taller Electrónica Sur','Av. Córdoba 1050','1145678901','Reparación Técnica'),(2,'Estudio Diseño Gráfico','Calle 50 Nro 500','2215551234','Servicios Creativos'),(3,'Mayorista Componentes XYZ','Ruta 9 Km 20','3413000500','Distribuidor Mayorista'),(4,'Escuela Técnica N°1','Av. San Martín 800','1133332222','Educación'),(5,'Particular Laura Gómez','Domicilio Particular 1','9999999999','Particular'),(6,'Particular Roberto Díaz','Domicilio Particular 2','9999999998','Particular'),(7,'Tienda de Gamers Pro','Santa Fe 456','3511112222','Minorista'),(8,'Particular Santiago García','Domicilio Particular 3','9999999997','Particular'),(9,'Clara','Local 15, Clinica medica','11259292','Clinica');
+INSERT INTO `clientes` VALUES (1,'Taller Electrónica Sur','Av. Córdoba 1050','1145678901','Reparación Técnicas'),(2,'Estudio Diseño Gráfico','Calle 50 Nro 500','2215551234','Servicios Creativos'),(3,'Mayorista Componentes XYZ','Ruta 9 Km 20','3413000500','Distribuidor Mayorista'),(4,'Escuela Técnica N°1','Av. San Martín 800','1133332222','Educación'),(5,'Particular Laura Gómez','Domicilio Particular 1','9999999999','Particular'),(6,'Particular Roberto Díaz','Domicilio Particular 2','9999999998','Particular'),(7,'Tienda de Gamers Pro','Santa Fe 456','3511112222','Minorista'),(8,'Particular Santiago García','Domicilio Particular 3','9999999997','Particular'),(9,'Clara','Local 15, Clinica medica','11259292','Clinica');
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -119,7 +119,7 @@ CREATE TABLE `detalle_pedido` (
   PRIMARY KEY (`id`),
   KEY `pedido_id` (`pedido_id`),
   CONSTRAINT `detalle_pedido_ibfk_1` FOREIGN KEY (`pedido_id`) REFERENCES `pedidos` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -128,7 +128,7 @@ CREATE TABLE `detalle_pedido` (
 
 LOCK TABLES `detalle_pedido` WRITE;
 /*!40000 ALTER TABLE `detalle_pedido` DISABLE KEYS */;
-INSERT INTO `detalle_pedido` VALUES (13,1,101,'Resistencia 1k Ohm (Pack x100)',4,150.00),(14,1,104,'Protoboard 830 puntos',4,950.00);
+INSERT INTO `detalle_pedido` VALUES (13,1,101,'Resistencia 1k Ohm (Pack x100)',4,150.00),(14,1,104,'Protoboard 830 puntos',4,950.00),(15,2,104,'Protoboard 830 puntos',1,950.00),(16,2,103,'Sensor de Temperatura DS18B20',1,650.00),(17,3,406,'Tazas Capibara',2,8500.00),(18,3,405,'Tira led 20mts',1,14500.00),(19,3,102,'Microcontrolador ESP32',6,1800.00),(20,4,406,'Vaso Termico Capibara',10,13500.00);
 /*!40000 ALTER TABLE `detalle_pedido` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -150,7 +150,7 @@ CREATE TABLE `detalle_ventas` (
   KEY `id_producto` (`id_producto`),
   CONSTRAINT `detalle_ventas_ibfk_1` FOREIGN KEY (`id_venta`) REFERENCES `ventas` (`id`) ON DELETE CASCADE,
   CONSTRAINT `detalle_ventas_ibfk_2` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=138 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=143 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -159,7 +159,7 @@ CREATE TABLE `detalle_ventas` (
 
 LOCK TABLES `detalle_ventas` WRITE;
 /*!40000 ALTER TABLE `detalle_ventas` DISABLE KEYS */;
-INSERT INTO `detalle_ventas` VALUES (100,10,102,1,1800.00),(101,10,103,5,650.00),(102,11,203,2,8999.00),(103,11,201,3,2500.00),(104,12,101,100,150.00),(105,13,104,5,950.00),(106,13,102,2,1800.00),(107,14,303,1,6999.00),(108,15,301,1,14999.00),(109,16,204,1,5999.00),(110,16,203,1,8999.00),(111,17,103,2,650.00),(112,17,101,5,150.00),(113,18,202,3,1599.00),(114,19,302,2,3200.00),(115,19,101,10,150.00),(116,20,201,1,2500.00),(117,21,401,2,45000.00),(118,21,402,5,3500.00),(119,22,404,1,9500.00),(120,22,403,10,1200.00),(121,23,402,2,3500.00),(122,23,101,5,150.00),(124,25,101,15,150.00),(125,26,101,193,150.00),(127,24,201,1,2500.00),(128,26,404,1,9500.00),(129,26,102,1,1800.00),(130,32,202,1,1599.00),(131,27,303,2,6999.00),(132,28,401,1,45000.00),(133,29,403,3,1200.00),(134,30,203,1,8999.00),(135,30,202,1,1500.00),(136,31,101,2,150.00),(137,32,202,1,1599.00);
+INSERT INTO `detalle_ventas` VALUES (100,10,102,1,1800.00),(101,10,103,5,650.00),(102,11,203,2,8999.00),(103,11,201,3,2500.00),(104,12,101,100,150.00),(105,13,104,5,950.00),(106,13,102,2,1800.00),(107,14,303,1,6999.00),(108,15,301,1,14999.00),(109,16,204,1,5999.00),(110,16,203,1,8999.00),(111,17,103,2,650.00),(112,17,101,5,150.00),(113,18,202,3,1599.00),(114,19,302,2,3200.00),(115,19,101,10,150.00),(116,20,201,1,2500.00),(117,21,401,2,45000.00),(118,21,402,5,3500.00),(119,22,404,1,9500.00),(120,22,403,10,1200.00),(121,23,402,2,3500.00),(122,23,101,5,150.00),(124,25,101,15,150.00),(125,26,101,193,150.00),(127,24,201,1,2500.00),(128,26,404,1,9500.00),(129,26,102,1,1800.00),(130,32,202,1,1599.00),(131,27,303,2,6999.00),(132,28,401,1,45000.00),(133,29,403,3,1200.00),(134,30,203,1,8999.00),(135,30,202,1,1500.00),(136,31,101,2,150.00),(137,32,202,1,1599.00),(138,33,407,5,30000.00),(139,34,406,10,13500.00),(140,35,406,2,8500.00),(141,35,405,1,14500.00),(142,35,102,6,1800.00);
 /*!40000 ALTER TABLE `detalle_ventas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -211,7 +211,7 @@ CREATE TABLE `pedidos` (
   PRIMARY KEY (`id`),
   KEY `usuario_id` (`usuario_id`),
   CONSTRAINT `pedidos_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -220,7 +220,7 @@ CREATE TABLE `pedidos` (
 
 LOCK TABLES `pedidos` WRITE;
 /*!40000 ALTER TABLE `pedidos` DISABLE KEYS */;
-INSERT INTO `pedidos` VALUES (1,6,'Ricardo','2025-12-12 23:55:15',4400.00,'Débito/Crédito','Rechazado');
+INSERT INTO `pedidos` VALUES (1,6,'Ricardo','2025-12-12 23:55:15',4400.00,'Débito/Crédito','Rechazado'),(2,6,'Ricardo','2025-12-17 22:27:46',1600.00,'Débito/Crédito','Entregado'),(3,7,'Carlos','2025-12-17 22:46:28',42300.00,'Efectivo','Entregado'),(4,4,'Santiago','2025-12-18 01:17:22',135000.00,'Transferencia','Entregado');
 /*!40000 ALTER TABLE `pedidos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -241,10 +241,11 @@ CREATE TABLE `productos` (
   `id_usuario` int NOT NULL,
   `fecha_creacion` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `imagen` varchar(255) DEFAULT NULL,
+  `categoria` varchar(100) DEFAULT 'General',
   PRIMARY KEY (`id`),
   KEY `id_proveedor` (`id_proveedor`),
   CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`id_proveedor`) REFERENCES `proveedores` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=406 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=409 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -253,7 +254,7 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES (101,'Resistencia 1k Ohm (Pack x100)',50.00,150.00,2761,1,0,'2025-12-12 17:50:38','fotos_productos/resistencia1kOhm.png'),(102,'Microcontrolador ESP32',800.00,1800.00,500,1,0,'2025-12-12 17:50:38','fotos_productos/esp32.webp'),(103,'Sensor de Temperatura DS18B20',300.00,650.00,800,1,0,'2025-12-12 17:50:38','fotos_productos/SensorTemperatura.webp'),(104,'Protoboard 830 puntos',400.00,950.00,600,1,0,'2025-12-12 17:50:38','fotos_productos/protoboard.webp'),(201,'Mouse Óptico Inalámbrico',1200.00,2500.00,800,2,0,'2025-12-12 17:50:38','fotos_productos/mouse.jpg'),(202,'Cable HDMI 2.0 (2 metros)',750.00,1599.00,1200,2,0,'2025-12-12 17:50:38','fotos_productos/hdmi.png'),(203,'Teclado Mecánico RGB',4500.00,8999.00,300,2,0,'2025-12-12 17:50:38','fotos_productos/tecladoMecanico.png'),(204,'Webcam HD 1080p',3000.00,5999.00,400,2,0,'2025-12-12 17:50:38','fotos_productos/webcam.png'),(301,'Reloj Inteligente Básico',8000.00,14999.00,150,3,0,'2025-12-12 17:50:38','fotos_productos/relojbasico.webp'),(302,'Foco LED Smart Wi-Fi',1500.00,3200.00,500,3,0,'2025-12-12 17:50:38','fotos_productos/foco.png'),(303,'Extensor WiFi Doble Banda',3500.00,6999.00,250,3,0,'2025-12-12 17:50:38','fotos_productos/wifi.jpg'),(401,'Peluche Capibara XL',30000.00,45000.00,8,4,0,'2025-12-12 17:50:38','fotos_productos/peluche.avif'),(402,'Taza Capibara \"Mug\"',2000.00,3500.00,43,4,0,'2025-12-12 17:50:38','fotos_productos/tazaCapibara.png'),(403,'Llavero Capibara PVC',500.00,1200.00,90,4,0,'2025-12-12 17:50:38','fotos_productos/llavero.webp'),(404,'Agenda 2026 Capibara',6000.00,9500.00,19,4,0,'2025-12-12 17:50:38','fotos_productos/agenda.webp'),(405,'Tira led 20mts',12000.00,14500.00,25,3,4,'2025-12-12 18:08:27','fotos_productos/tiraLed.webp');
+INSERT INTO `productos` VALUES (101,'Resistencia 1k Ohm (Pack x100)',50.00,150.00,2761,1,0,'2025-12-12 17:50:38','fotos_productos/resistencia1kOhm.png','Electronica y Robotica'),(102,'Microcontrolador ESP32',800.00,1800.00,494,1,0,'2025-12-12 17:50:38','fotos_productos/esp32.webp','Electronica y Robotica'),(103,'Sensor de Temperatura DS18B20',300.00,650.00,800,1,0,'2025-12-12 17:50:38','fotos_productos/SensorTemperatura.webp','Electronica y Robotica'),(104,'Protoboard 830 puntos',400.00,950.00,600,1,0,'2025-12-12 17:50:38','fotos_productos/protoboard.webp','Electronica y Robotica'),(201,'Mouse Óptico Inalámbrico',1200.00,2500.00,800,2,0,'2025-12-12 17:50:38','fotos_productos/mouse.jpg','Perifericos y Accesorios'),(202,'Cable HDMI 2.0 (2 metros)',750.00,1599.00,1200,2,0,'2025-12-12 17:50:38','fotos_productos/hdmi.png','Perifericos y Accesorios'),(203,'Teclado Mecánico RGB',4500.00,8999.00,300,2,0,'2025-12-12 17:50:38','fotos_productos/tecladoMecanico.png','Perifericos y Accesorios'),(204,'Webcam HD 1080p',3000.00,5999.00,400,2,0,'2025-12-12 17:50:38','fotos_productos/webcam.png','Perifericos y Accesorios'),(301,'Reloj Inteligente Básico',8000.00,14999.00,150,3,0,'2025-12-12 17:50:38','fotos_productos/relojbasico.webp','Smart Home y Gadgets'),(302,'Foco LED Smart Wi-Fi',1500.00,3200.00,500,3,0,'2025-12-12 17:50:38','fotos_productos/foco.png','Smart Home y Gadgets'),(303,'Extensor WiFi Doble Banda',3500.00,6999.00,250,3,0,'2025-12-12 17:50:38','fotos_productos/wifi.jpg','Smart Home y Gadgets'),(401,'Peluche Capibara XL',30000.00,45000.00,8,4,0,'2025-12-12 17:50:38','fotos_productos/peluche.avif','Merchandising Capibara'),(402,'Taza Capibara \"Mug\"',2000.00,3500.00,43,4,0,'2025-12-12 17:50:38','fotos_productos/tazaCapibara.png','Merchandising Capibara'),(403,'Llavero Capibara PVC',500.00,1200.00,90,4,0,'2025-12-12 17:50:38','fotos_productos/llavero.webp','Merchandising Capibara'),(404,'Agenda 2026 Capibara',6000.00,9500.00,19,4,0,'2025-12-12 17:50:38','fotos_productos/agenda.webp','Merchandising Capibara'),(405,'Tira led 20mts',12000.00,14500.00,24,3,4,'2025-12-12 18:08:27','fotos_productos/tiraLed.webp','Merchandising Capibara'),(406,'Vaso Termico Capibara',10500.00,13500.00,128,5,4,'2025-12-17 21:39:59','fotos_productos/vasoTermico.png','Merchandising Capibara'),(407,'Mouse oficina',15000.00,30000.00,45,2,4,'2025-12-17 21:40:38','fotos_productos/mouseViejo.png','Perifericos y Accesorios'),(408,'Mouse RGB',15000.00,30000.00,40,2,4,'2025-12-17 23:57:10','fotos_productos/mouseRGB.webp','Perifericos y Accesorios');
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -271,7 +272,7 @@ CREATE TABLE `proveedores` (
   `direccion` varchar(150) DEFAULT NULL,
   `telefono` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -280,7 +281,7 @@ CREATE TABLE `proveedores` (
 
 LOCK TABLES `proveedores` WRITE;
 /*!40000 ALTER TABLE `proveedores` DISABLE KEYS */;
-INSERT INTO `proveedores` VALUES (1,'Tech Supplies Inc.','Componentes Electrónicos','Ruta 3 km 50','1123456789'),(2,'Accesorios Global SRL','Periféricos y Cables','Bv. San Juan 100','3514000123'),(3,'Gadgets Innovations','Dispositivos IoT y Wearables','Av. Belgrano 900','1188887777'),(4,'Capibara Merch S.A.','Merchandising/Souvenirs','Ruta 40 Km 10','1133334444');
+INSERT INTO `proveedores` VALUES (1,'Tech Supplies Inc.','Componentes Electrónicos','Ruta 3 km 50','1123456789'),(2,'Accesorios Global SRL','Periféricos y Cables','Bv. San Juan 100','3514000123'),(3,'Gadgets Innovations','Dispositivos IoT y Wearables','Av. Belgrano 900','1188887777'),(4,'Capibara Merch S.A.','Merchandising/Souvenirs','Ruta 40 Km 10','1133334444'),(5,'Peltier&Co','Cafeteria','Peltier 50','11 6842 0923');
 /*!40000 ALTER TABLE `proveedores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -300,7 +301,7 @@ CREATE TABLE `usuarios` (
   `creado_en` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mail` (`mail`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -309,7 +310,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'Mauricio','mauricio_arias@live.com.ar','$2y$10$bX2PHgfV2zHnN7ZZSNlFNODrs/2gBZe20ZPA7eyZt9SMExIIQ541m',1,'2025-10-15 21:58:29'),(2,'Juana Perez','Jperez@gmail.com','$2y$10$tM.yF6m71n3gV0J8S.fJLO6w5w6eFfA9hE5.2W5l4H0fL5e9m2fL.',0,'2025-10-15 22:20:36'),(3,'Lucas Lopez','Lucas@hotmail.com','$2y$10$tM.yF6m71n3gV0J8S.fJLO6w5w6eFfA9hE5.2W5l4H0fL5e9m2fL.',0,'2025-10-15 22:20:36'),(4,'Santiago','comessantiago@gmail.com','$2y$10$RrmUL9SNi6d4d1la00QjJek5/PPQJfUjSuQUIPf54s.mOOArktFmW',1,'2025-10-15 22:09:59'),(5,'German','GGiorgis@gmail.com','$2y$10$hryRSUBkHTz3XRc.I0tr6uwlHqkxGvd3NlFD6UrXJIKWyK9vlkDuu',0,'2025-12-12 19:39:39'),(6,'Ricardo','Rick@outlook.com','$2y$10$B2ATlP.s1VA22h95L8YkWOsPh43xekIk62fc14.m9YWdoQYPD.SkO',0,'2025-12-12 19:43:43');
+INSERT INTO `usuarios` VALUES (1,'Mauricio','mauricio_arias@live.com.ar','$2y$10$bX2PHgfV2zHnN7ZZSNlFNODrs/2gBZe20ZPA7eyZt9SMExIIQ541m',1,'2025-10-15 21:58:29'),(2,'Juana Perez','Jperez@gmail.com','$2y$10$tM.yF6m71n3gV0J8S.fJLO6w5w6eFfA9hE5.2W5l4H0fL5e9m2fL.',0,'2025-10-15 22:20:36'),(3,'Lucas Lopez','Lucas@hotmail.com','$2y$10$tM.yF6m71n3gV0J8S.fJLO6w5w6eFfA9hE5.2W5l4H0fL5e9m2fL.',0,'2025-10-15 22:20:36'),(4,'Santiago','comessantiago@gmail.com','$2y$10$RrmUL9SNi6d4d1la00QjJek5/PPQJfUjSuQUIPf54s.mOOArktFmW',1,'2025-10-15 22:09:59'),(5,'German','GGiorgis@gmail.com','$2y$10$hryRSUBkHTz3XRc.I0tr6uwlHqkxGvd3NlFD6UrXJIKWyK9vlkDuu',0,'2025-12-12 19:39:39'),(6,'Ricardo','Rick@outlook.com','$2y$10$B2ATlP.s1VA22h95L8YkWOsPh43xekIk62fc14.m9YWdoQYPD.SkO',0,'2025-12-12 19:43:43'),(7,'Carlos','carlito@gmail.com','$2y$10$QXotWh/gBW5V9vRlMb5jdOK0G8I/qroJ8ZdrsPSbarDdXAl23OJx6',0,'2025-12-17 21:44:46');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -330,7 +331,7 @@ CREATE TABLE `ventas` (
   PRIMARY KEY (`id`),
   KEY `id_cliente` (`id_cliente`),
   CONSTRAINT `ventas_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -339,7 +340,7 @@ CREATE TABLE `ventas` (
 
 LOCK TABLES `ventas` WRITE;
 /*!40000 ALTER TABLE `ventas` DISABLE KEYS */;
-INSERT INTO `ventas` VALUES (10,1,'2025-10-02 11:00:00',5000.00,1050.00,'Débito'),(11,2,'2025-10-06 16:30:00',25000.00,5250.00,'Efectivo'),(12,3,'2025-10-07 09:15:00',15000.00,3150.00,'Transferencia'),(13,4,'2025-10-07 14:40:00',9000.00,1890.00,'Crédito'),(14,5,'2025-10-08 17:00:00',6000.00,1260.00,'Efectivo'),(15,6,'2025-10-09 10:20:00',16000.00,3360.00,'Débito'),(16,7,'2025-10-09 15:55:00',9000.00,1890.00,'Transferencia'),(17,1,'2025-10-10 11:30:00',2000.00,420.00,'Efectivo'),(18,2,'2025-10-11 14:10:00',5000.00,1050.00,'Débito'),(19,3,'2025-10-12 09:30:00',8000.00,1680.00,'Transferencia'),(20,5,'2025-10-12 18:00:00',3500.00,735.00,'Efectivo'),(21,7,'2025-10-16 15:59:27',130075.00,22575.00,'Crédito'),(22,5,'2025-10-14 15:59:27',26015.00,4515.00,'Transferencia'),(23,8,'2025-10-11 15:59:27',9377.50,1627.50,'Efectivo'),(24,2,'2025-10-15 10:30:00',2500.00,525.00,'Efectivo'),(25,NULL,'2025-12-12 16:13:01',2250.00,472.50,'Transferencia'),(26,9,'2025-12-12 16:17:46',28950.00,6079.50,'Transferencia'),(27,NULL,'2025-12-01 18:45:00',13998.00,2939.58,'Débito'),(28,8,'2025-10-20 11:00:00',45000.00,9450.00,'Efectivo'),(29,NULL,'2025-11-25 16:30:00',3600.00,756.00,'Transferencia'),(30,3,'2025-12-10 12:00:00',10499.00,2204.79,'Débito'),(31,NULL,'2025-09-28 20:10:00',300.00,63.00,'Efectivo'),(32,NULL,'2025-09-10 14:20:00',1749.00,367.29,'Crédito');
+INSERT INTO `ventas` VALUES (10,1,'2025-10-02 11:00:00',5000.00,1050.00,'Débito'),(11,2,'2025-10-06 16:30:00',25000.00,5250.00,'Efectivo'),(12,3,'2025-10-07 09:15:00',15000.00,3150.00,'Transferencia'),(13,4,'2025-10-07 14:40:00',9000.00,1890.00,'Crédito'),(14,5,'2025-10-08 17:00:00',6000.00,1260.00,'Efectivo'),(15,6,'2025-10-09 10:20:00',16000.00,3360.00,'Débito'),(16,7,'2025-10-09 15:55:00',9000.00,1890.00,'Transferencia'),(17,1,'2025-10-10 11:30:00',2000.00,420.00,'Efectivo'),(18,2,'2025-10-11 14:10:00',5000.00,1050.00,'Débito'),(19,3,'2025-10-12 09:30:00',8000.00,1680.00,'Transferencia'),(20,5,'2025-10-12 18:00:00',3500.00,735.00,'Efectivo'),(21,7,'2025-10-16 15:59:27',130075.00,22575.00,'Crédito'),(22,5,'2025-10-14 15:59:27',26015.00,4515.00,'Transferencia'),(23,8,'2025-10-11 15:59:27',9377.50,1627.50,'Efectivo'),(24,2,'2025-10-15 10:30:00',2500.00,525.00,'Efectivo'),(25,NULL,'2025-12-12 16:13:01',2250.00,472.50,'Transferencia'),(26,9,'2025-12-12 16:17:46',28950.00,6079.50,'Transferencia'),(27,NULL,'2025-12-01 18:45:00',13998.00,2939.58,'Débito'),(28,8,'2025-10-20 11:00:00',45000.00,9450.00,'Efectivo'),(29,NULL,'2025-11-25 16:30:00',3600.00,756.00,'Transferencia'),(30,3,'2025-12-10 12:00:00',10499.00,2204.79,'Débito'),(31,NULL,'2025-09-28 20:10:00',300.00,63.00,'Efectivo'),(32,NULL,'2025-09-10 14:20:00',1749.00,367.29,'Crédito'),(33,4,'2025-12-17 18:41:34',150000.00,31500.00,'Crédito'),(34,NULL,'2025-12-17 21:20:22',135000.00,28350.00,'Transferencia'),(35,NULL,'2025-12-17 21:20:30',42300.00,8883.00,'Efectivo');
 /*!40000 ALTER TABLE `ventas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -360,4 +361,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-12-12 20:06:18
+-- Dump completed on 2025-12-17 23:22:32

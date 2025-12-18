@@ -2,23 +2,15 @@
 session_start();
 require '../catalogo-conexion/conexion.php';
 
-// 1. PRIMERO: Realizar la consulta a la base de datos
-$resultado = $conexion->query("SELECT p.*, pr.nombre as proveedor FROM productos p LEFT JOIN proveedores pr ON p.id_proveedor = pr.id ORDER BY p.nombre ASC");
+// 1. Consulta a la base de datos (Usamos la nueva columna categoria)
+$resultado = $conexion->query("SELECT p.*, pr.nombre as proveedor FROM productos p LEFT JOIN proveedores pr ON p.id_proveedor = pr.id ORDER BY p.categoria ASC, p.nombre ASC");
 $productos = $resultado->fetch_all(MYSQLI_ASSOC);
 
-// 2. SEGUNDO: Inicializar y llenar las categorías agrupadas
-$categorias_agrupadas = [
-    'Electronica y Robotica' => [],   // IDs 100-199
-    'Perifericos y Accesorios' => [], // IDs 200-299
-    'Smart Home y Gadgets' => [],     // IDs 300-399
-    'Merchandising Capibara' => []    // IDs 400-499
-];
-
+// 2. Agrupación dinámica por la columna 'categoria'
+$categorias_agrupadas = [];
 foreach ($productos as $p) {
-    if ($p['id'] >= 100 && $p['id'] < 200) $categorias_agrupadas['Electronica y Robotica'][] = $p;
-    elseif ($p['id'] >= 200 && $p['id'] < 300) $categorias_agrupadas['Perifericos y Accesorios'][] = $p;
-    elseif ($p['id'] >= 300 && $p['id'] < 400) $categorias_agrupadas['Smart Home y Gadgets'][] = $p;
-    elseif ($p['id'] >= 400 && $p['id'] < 500) $categorias_agrupadas['Merchandising Capibara'][] = $p;
+    $cat = !empty($p['categoria']) ? $p['categoria'] : 'General';
+    $categorias_agrupadas[$cat][] = $p;
 }
 ?>
 <!DOCTYPE html>
@@ -41,12 +33,13 @@ foreach ($productos as $p) {
             <nav class="nav-menu">
                 <a href="vista_cliente.php">Inicio</a>
                 <a href="tienda.php" class="active">Tienda</a>
-                <a href="pedidos.php" class="active">Mis Pedidos</a>
+                <a href="pedidos.php">Mis Pedidos</a>
                 <div class="cart-wrapper">
                     <div class="cart-icon-container" id="cartIcon">
                         <i class="fas fa-shopping-cart"></i>
                         <span id="contador-productos">0</span>
                     </div>
+
                     <div class="cart-dropdown hidden" id="cartDropdown">
                         <div class="cart-items-list" id="cartItems">
                             <p class="text-center text-muted py-3">El carrito está vacío</p>
@@ -60,6 +53,8 @@ foreach ($productos as $p) {
                         </div>
                     </div>
                 </div>
+                <a></a>
+                <a href="../catalogo-api/cerrar_sesion.php">Cerrar Sesión</a>
             </nav>
         </div>
     </header>
@@ -73,10 +68,9 @@ foreach ($productos as $p) {
                 <div class="col-md-3">
                     <select id="category-filter" class="form-select">
                         <option value="all">Todas las categorías</option>
-                        <option value="Electronica y Robotica">Electrónica y Robótica</option>
-                        <option value="Perifericos y Accesorios">Periféricos y Accesorios</option>
-                        <option value="Smart Home y Gadgets">Smart Home y Gadgets</option>
-                        <option value="Merchandising Capibara">Merchandising Capibara</option>
+                        <?php foreach (array_keys($categorias_agrupadas) as $cat_name): ?>
+                            <option value="<?= htmlspecialchars($cat_name) ?>"><?= htmlspecialchars($cat_name) ?></option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
             </div>
@@ -84,21 +78,28 @@ foreach ($productos as $p) {
 
         <div id="grid-productos">
             <?php foreach ($categorias_agrupadas as $nombre_cat => $lista_p): ?>
-                <?php if (!empty($lista_p)): ?>
-                    <div class="container-header mt-5 mb-3">
-                        <h2 class="fw-bold text-azul"><?= strtoupper($nombre_cat) ?></h2>
-                    </div>
-                    <hr>
-                    <div class="row g-4 mb-5">
-                        <?php foreach ($lista_p as $p): ?>
-                            <div class="col-6 col-md-4 col-lg-3 product-item" data-category="<?= $nombre_cat ?>">
-                                <div class="card product-card h-100 shadow-sm">
-                                    <div class="img-zoom-container">
-                                        <img src="<?= !empty($p['imagen']) ? $p['imagen'] : 'fotos index/logo.png' ?>" class="card-img-top" alt="<?= htmlspecialchars($p['nombre']) ?>">
-                                    </div>
-                                    <div class="card-body d-flex flex-column">
-                                        <h5 class="product-title"><?= htmlspecialchars($p['nombre']) ?></h5>
-                                        <p class="product-price mt-auto">$<?= number_format($p['precio_venta'], 2, ',', '.') ?></p>
+                <div class="container-header mt-5 mb-3">
+                    <h2 class="fw-bold text-azul"><?= strtoupper($nombre_cat) ?></h2>
+                </div>
+                <hr>
+                <div class="row g-4 mb-5">
+                    <?php foreach ($lista_p as $p): ?>
+                        <div class="col-6 col-md-4 col-lg-3 product-item" data-category="<?= htmlspecialchars($nombre_cat) ?>">
+                            <div class="card product-card h-100 shadow-sm <?= ($p['cantidad'] <= 0) ? 'opacity-75' : '' ?>">
+                                <div class="img-zoom-container position-relative">
+                                    <img src="<?= !empty($p['imagen']) ? $p['imagen'] : 'fotos index/logo.png' ?>" class="card-img-top" alt="<?= htmlspecialchars($p['nombre']) ?>">
+
+                                    <?php if ($p['cantidad'] <= 0): ?>
+                                        <div class="position-absolute top-50 start-50 translate-middle w-100 text-center">
+                                            <span class="badge bg-danger fs-5 shadow">SIN STOCK</span>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="product-title"><?= htmlspecialchars($p['nombre']) ?></h5>
+                                    <p class="product-price mt-auto">$<?= number_format($p['precio_venta'], 2, ',', '.') ?></p>
+
+                                    <?php if ($p['cantidad'] > 0): ?>
                                         <button class="btn-add-cart w-100"
                                             data-id="<?= $p['id'] ?>"
                                             data-nombre="<?= htmlspecialchars($p['nombre']) ?>"
@@ -106,12 +107,14 @@ foreach ($productos as $p) {
                                             data-img="<?= !empty($p['imagen']) ? $p['imagen'] : 'fotos index/logo.png' ?>">
                                             <i class="fas fa-cart-plus me-2"></i>Agregar
                                         </button>
-                                    </div>
+                                    <?php else: ?>
+                                        <button class="btn btn-secondary w-100" disabled>No disponible</button>
+                                    <?php endif; ?>
                                 </div>
                             </div>
-                        <?php endforeach; ?>
-                    </div>
-                <?php endif; ?>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
             <?php endforeach; ?>
         </div>
     </div>
@@ -121,7 +124,7 @@ foreach ($productos as $p) {
             <div class="modal-content border-0 shadow-lg">
                 <div class="modal-header bg-azul text-white">
                     <h5 class="modal-title fw-bold">Finalizar Pedido 📦</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body p-4 text-center">
                     <div id="step-payment">
@@ -130,7 +133,7 @@ foreach ($productos as $p) {
                             <button class="btn btn-outline-primary btn-pay-option" data-method="Efectivo">
                                 <i class="fas fa-money-bill-wave me-2"></i> Efectivo (10% OFF)
                             </button>
-                            <button class="btn btn-outline-primary btn-pay-option" data-method="Débito/Crédito">
+                            <button class="btn btn-outline-primary btn-pay-option" data-method="Tarjeta">
                                 <i class="fas fa-credit-card me-2"></i> Tarjeta Débito / Crédito
                             </button>
                             <button class="btn btn-outline-primary btn-pay-option" data-method="Transferencia">
@@ -138,11 +141,8 @@ foreach ($productos as $p) {
                             </button>
                         </div>
                     </div>
-
                     <div id="step-success" class="d-none">
-                        <div class="mb-3">
-                            <i class="fas fa-check-circle text-success" style="font-size: 4rem;"></i>
-                        </div>
+                        <div class="mb-3"><i class="fas fa-check-circle text-success" style="font-size: 4rem;"></i></div>
                         <h4 class="fw-bold text-azul">¡Pedido Confirmado!</h4>
                         <p id="mensaje-final" class="text-muted mt-3"></p>
                         <button type="button" class="btn btn-azul w-100 mt-3" data-bs-dismiss="modal">Entendido</button>

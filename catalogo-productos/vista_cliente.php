@@ -56,7 +56,7 @@ if (isset($_SESSION['usuario']['nombre'])) {
         <section class="hero">
             <div class="hero-text">
                 <h1>Bienvenido a Capibara Store 👋</h1>
-                <p>Somos apasionados por ofrecerte lo mejor en tendencia y calidad. En Capibara Store, nos dedicamos a curar productos exclusivos que se adaptan a tu estilo de vida, garantizando seguridad en cada compra y una experiencia excepcional.</p>
+                <p>Somos apasionados por ofrecerte lo mejor en tendencia y calidad. En Capibara Store, nos dedicamos a proveer productos exclusivos que se adaptan a tu estilo de vida, garantizando seguridad en cada compra y una experiencia excepcional.</p>
                 <a href="tienda.php" class="btn-cta">Explorar Tienda</a>
             </div>
         </section>
@@ -111,7 +111,10 @@ if (isset($_SESSION['usuario']['nombre'])) {
                 </div>
 
                 <div class="contacto-form">
-                    <form action="save_message.php" method="post">
+                    <?php if (isset($_GET['msj']) && $_GET['msj'] == 'enviado'): ?>
+                        <p style="color: green; font-weight: bold;">¡Mensaje enviado con éxito! Te contactaremos pronto.</p>
+                    <?php endif; ?>
+                    <form action="../catalogo-api/save_message.php" method="post">
                         <input type="hidden" name="page" value="index">
                         <div class="form-group">
                             <label for="name">Nombre</label>
@@ -142,13 +145,6 @@ if (isset($_SESSION['usuario']['nombre'])) {
             </ul>
         </div>
     </footer>
-
-    <div id="divMensajes" class="ventana-emergente">
-        <div class="contenido-ventana">
-            <button id="btnCerrarVentana" class="boton-cerrar">&times;</button>
-            <div id="contenidoMensajes"></div>
-        </div>
-    </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {

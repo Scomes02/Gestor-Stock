@@ -6,7 +6,7 @@ require '../catalogo-conexion/conexion.php';
 
 // 1. Verificar si el usuario está logueado
 if (!isset($_SESSION['usuario']) || !isset($_SESSION['usuario']['id'])) {
-    header("Location: login.php");
+    header("Location: ../catalogo-api/login.php");
     exit;
 }
 
@@ -34,6 +34,7 @@ function obtenerDetallePedido($conexion, $pedido_id) {
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <link rel="icon" href="/img/Proyecto_nuevo.ico">
     <meta charset="UTF-8">
     <title>Mis Pedidos - Capibara Store</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -49,7 +50,7 @@ function obtenerDetallePedido($conexion, $pedido_id) {
         <div class="container d-flex justify-content-between align-items-center">
             <a class="navbar-brand text-white fw-bold" href="tienda.php">🦫 Capibara Store</a>
             <nav class="nav-menu">
-                <a href="index.php">Inicio</a>
+                <a href="vista_cliente.php">Inicio</a>
                 <a href="tienda.php">Tienda</a>
                 <a href="pedidos.php" class="active">Mis Pedidos</a> 
                 <a href="../catalogo-api/cerrar_sesion.php">Cerrar Sesión</a>
