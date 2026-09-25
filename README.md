@@ -77,7 +77,7 @@ Gestor-Stock/
 └── README.md               # Documentación del proyecto
 ```
 
-🚀 Instalación y puesta en marcha
+## 🚀 Instalación y puesta en marcha
 Requisitos previos
 Entorno de servidor local (XAMPP, WAMP, Laragon o MAMP)
 
@@ -89,7 +89,7 @@ Gestor de base de datos (phpMyAdmin o DBeaver)
 
 Pasos
 Bash
-# 1. Clonar el repositorio dentro de la carpeta pública de tu servidor (ej. htdocs en XAMPP)
+### 1. Clonar el repositorio dentro de la carpeta pública de tu servidor (ej. htdocs en XAMPP)
 cd C:/xampp/htdocs
 git clone [https://github.com/Scomes02/Gestor-Stock.git](https://github.com/Scomes02/Gestor-Stock.git)
 cd Gestor-Stock
@@ -122,7 +122,7 @@ flowchart LR
     D --> F[Cliente visualiza estado<br/>en Mis Pedidos]
     E --> F
 
-📸 Capturas de Pantalla
+## 📸 Capturas de Pantalla
 <img width="1852" height="940" alt="Dashboard Admin" src="https://github.com/user-attachments/assets/75a9dc8b-ac9c-433b-bfc4-e362b17ad9ab" />
 
 <img width="1842" height="932" alt="Gestión de Stock" src="https://github.com/user-attachments/assets/4c73f3cf-26df-427d-977f-b3a47cf1bc5a" />
