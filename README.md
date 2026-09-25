@@ -77,27 +77,50 @@ Gestor-Stock/
 └── README.md               # Documentación del proyecto
 ```
 
-## ▶️ Instalación y Despliegue Local
+🚀 Instalación y puesta en marcha
+Requisitos previos
+Entorno de servidor local (XAMPP, WAMP, Laragon o MAMP)
 
-Sigue estos pasos para correr el proyecto en tu máquina local (requiere un entorno de servidor como XAMPP, WAMP o MAMP):
+PHP 7.4 / 8.x
 
-1. **Clonar el repositorio:**
-   ```bash
-   git clone [https://github.com/Scomes02/Gestor-Stock.git](https://github.com/Scomes02/Gestor-Stock.git)
-Mover al servidor local:
-Coloca la carpeta clonada dentro del directorio público de tu servidor web (por ejemplo, en la carpeta htdocs si usas XAMPP).
+MySQL / MariaDB
 
-Configurar la Base de Datos:
+Gestor de base de datos (phpMyAdmin o DBeaver)
 
-Abre phpMyAdmin (o tu gestor SQL preferido como DBeaver).
+Pasos
+Bash
+# 1. Clonar el repositorio dentro de la carpeta pública de tu servidor (ej. htdocs en XAMPP)
+cd C:/xampp/htdocs
+git clone [https://github.com/Scomes02/Gestor-Stock.git](https://github.com/Scomes02/Gestor-Stock.git)
+cd Gestor-Stock
+Configurá la base de datos local siguiendo estos pasos:
 
-Crea una nueva base de datos.
+Iniciá los servicios de Apache y MySQL desde el panel de control de XAMPP.
 
-Importa el archivo catalogo_db.sql que se encuentra en la carpeta raíz de este proyecto.
+Abrí phpMyAdmin (http://localhost/phpmyadmin) o DBeaver y creá una nueva base de datos para el proyecto.
 
-Ejecutar:
-Abre tu navegador web y navega a la ruta local del proyecto. Por ejemplo:
+Importá el archivo catalogo_db.sql ubicado en la raíz del repositorio para generar todas las tablas y relaciones.
+
+Verificá las credenciales de conexión dentro de tu archivo de configuración de base de datos:
+
+PHP
+$host = "localhost";
+$dbname = "catalogo_db";
+$username = "root";
+$password = "";
+Una vez importada la base de datos, abrí tu navegador y accedé a:
+
+Plaintext
 http://localhost/Gestor-Stock
+🧩 Flujo del sistema
+Fragmento de código
+flowchart LR
+    A[Cliente explora<br/>el catálogo] --> B[Arma carrito y<br/>confirma pedido]
+    B --> C{Administrador<br/>revisa orden}
+    C -->|Aprueba pedido| D[Aceptado<br/>Impacta en ventas y ganancias]
+    C -->|Cancela pedido| E[Rechazado]
+    D --> F[Cliente visualiza estado<br/>en Mis Pedidos]
+    E --> F
 
 📸 Capturas de Pantalla
 <img width="1852" height="940" alt="Dashboard Admin" src="https://github.com/user-attachments/assets/75a9dc8b-ac9c-433b-bfc4-e362b17ad9ab" />
@@ -108,9 +131,7 @@ http://localhost/Gestor-Stock
 
 <img width="1847" height="939" alt="Carrito de Compras" src="https://github.com/user-attachments/assets/41aa3788-d4e3-4518-bb97-68829393ab8c" />
 
-👤 Autor
-Santiago Comes
-
-💼 LinkedIn: Visitar mi perfil
-
-💻 GitHub: @Scomes02
+### 👤 Autor
+**Santiago Comes** 
+- 💻 GitHub: [Scomes02](https://github.com/Scomes02)
+- 💼 LinkedIn: [Santiago Comes](https://www.linkedin.com/in/santiago-comes)
