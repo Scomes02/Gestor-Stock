@@ -112,8 +112,9 @@ Una vez importada la base de datos, abrí tu navegador y accedé a:
 
 Plaintext
 http://localhost/Gestor-Stock
-🧩 Flujo del sistema
-Fragmento de código
+
+### 🧩 Flujo del sistema
+```mermaid
 flowchart LR
     A[Cliente explora<br/>el catálogo] --> B[Arma carrito y<br/>confirma pedido]
     B --> C{Administrador<br/>revisa orden}
@@ -121,7 +122,7 @@ flowchart LR
     C -->|Cancela pedido| E[Rechazado]
     D --> F[Cliente visualiza estado<br/>en Mis Pedidos]
     E --> F
-
+```
 ## 📸 Capturas de Pantalla
 <img width="1852" height="940" alt="Dashboard Admin" src="https://github.com/user-attachments/assets/75a9dc8b-ac9c-433b-bfc4-e362b17ad9ab" />
 
